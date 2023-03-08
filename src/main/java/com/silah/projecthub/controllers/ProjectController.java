@@ -30,7 +30,7 @@ public class ProjectController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Project> getProject(@PathVariable int id) throws ProjectNotFoundException {
+    public ResponseEntity<Project> getProject(@PathVariable long id) throws ProjectNotFoundException {
         return ResponseEntity.ok(projectService.getProject(id));
     }
 }
