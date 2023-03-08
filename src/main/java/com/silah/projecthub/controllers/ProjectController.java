@@ -2,6 +2,7 @@ package com.silah.projecthub.controllers;
 
 import com.silah.projecthub.entities.Project;
 import com.silah.projecthub.exceptions.InvalidProjectException;
+import com.silah.projecthub.exceptions.ProjectNotFoundException;
 import com.silah.projecthub.services.ProjectService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,5 +24,10 @@ public class ProjectController {
     @GetMapping
     public ResponseEntity<?> getProjects() {
         return ResponseEntity.ok(projectService.getAllProjects());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getProject(@PathVariable long id) throws ProjectNotFoundException {
+        return ResponseEntity.ok(projectService.getProject(id));
     }
 }
