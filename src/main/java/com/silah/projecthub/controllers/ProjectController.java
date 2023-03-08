@@ -19,4 +19,9 @@ public class ProjectController {
     public ResponseEntity<?> createProject(@RequestBody Project project) throws InvalidProjectException {
         return ResponseEntity.ok(projectService.createProject(project));
     }
+
+    @GetMapping
+    public ResponseEntity<?> getProjects() {
+        return ResponseEntity.ok(projectService.getAllProjects());
+    }
 }

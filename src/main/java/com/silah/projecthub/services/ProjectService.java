@@ -5,6 +5,8 @@ import com.silah.projecthub.exceptions.InvalidProjectException;
 import com.silah.projecthub.repositories.ProjectRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ProjectService {
     private final ProjectRepository projectRepository;
@@ -19,5 +21,9 @@ public class ProjectService {
         }else{
             throw new InvalidProjectException("Project is not valid");
         }
+    }
+
+    public List<Project> getAllProjects() {
+        return projectRepository.findAll();
     }
 }
