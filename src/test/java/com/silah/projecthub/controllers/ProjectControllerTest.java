@@ -5,6 +5,7 @@ import com.silah.projecthub.exceptions.InvalidProjectException;
 import com.silah.projecthub.exceptions.ProjectNotFoundException;
 import com.silah.projecthub.services.ProjectService;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -33,6 +34,7 @@ class ProjectControllerTest {
     }
 
     @Test
+    @DisplayName("Test create project with valid project")
     void createProject_withValidProject_shouldReturnCreated() throws InvalidProjectException, URISyntaxException {
         Project project = new Project();
         project.setId(1L);
@@ -49,6 +51,7 @@ class ProjectControllerTest {
     }
 
     @Test
+    @DisplayName("Test create project with invalid project")
     void createProject_withInvalidProject_shouldThrowInvalidProjectException() throws InvalidProjectException {
         Project project = new Project();
         project.setName(null);
@@ -60,6 +63,7 @@ class ProjectControllerTest {
     }
 
     @Test
+    @DisplayName("Test get projects with existing projects")
     void getProjects_shouldReturnListOfProjects() {
         List<Project> projects = new ArrayList<>();
         projects.add(new Project());
@@ -75,6 +79,7 @@ class ProjectControllerTest {
     }
 
     @Test
+    @DisplayName("Test get project with existing project")
     void getProject_withExistingProject_shouldReturnProject() throws ProjectNotFoundException {
         Project project = new Project();
         project.setId(1L);
@@ -91,6 +96,7 @@ class ProjectControllerTest {
     }
 
     @Test
+    @DisplayName("Test get project with non-existing project")
     void getProject_withNonExistingProject_shouldThrowProjectNotFoundException() throws ProjectNotFoundException {
         when(projectService.getProject(1L)).thenThrow(new ProjectNotFoundException("Project not found"));
 
