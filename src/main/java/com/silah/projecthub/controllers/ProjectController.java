@@ -7,6 +7,9 @@ import com.silah.projecthub.services.ProjectService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+
 @RestController
 @RequestMapping("/api/v1/projects")
 public class ProjectController {
@@ -17,8 +20,8 @@ public class ProjectController {
     }
 
     @PostMapping
-    public ResponseEntity<?> createProject(@RequestBody Project project) throws InvalidProjectException {
-        return ResponseEntity.ok(projectService.createProject(project));
+    public ResponseEntity<Long> createProject(@RequestBody Project project) throws InvalidProjectException, URISyntaxException {
+        return ResponseEntity.created(new URI("/api/v1/projects/" + projectService.createProject(project))).build();
     }
 
     @GetMapping

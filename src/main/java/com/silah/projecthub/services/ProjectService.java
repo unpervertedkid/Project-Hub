@@ -7,8 +7,6 @@ import com.silah.projecthub.repositories.ProjectRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.logging.Logger;
 
 @Service
 public class ProjectService {
@@ -18,7 +16,7 @@ public class ProjectService {
         this.projectRepository = projectRepository;
     }
 
-    public double createProject(Project project) throws InvalidProjectException {
+    public long createProject(Project project) throws InvalidProjectException {
         if (project.isValid()) {
             return projectRepository.save(project).getId();
         } else {

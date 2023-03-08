@@ -1,9 +1,7 @@
 package com.silah.projecthub.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 
 @Entity
 public class Project {
@@ -47,7 +45,8 @@ public class Project {
         this.category = category;
     }
 
+    @JsonIgnore
     public boolean isValid() {
-        return name != null && !name.isEmpty() && description != null && !description.isEmpty() && category != null;
+        return name != null && !name.isEmpty() && description != null && !description.isEmpty() && category.isValid();
     }
 }
