@@ -12,6 +12,9 @@ public class Project {
     private String name;
     private String description;
     private Category category;
+    private long impressions;
+
+    private long likes;
 
     public long getId() {
         return id;
@@ -44,6 +47,23 @@ public class Project {
     public void setCategory(Category category) {
         this.category = category;
     }
+
+    public long getImpressions() {
+        return impressions;
+    }
+
+    public void setImpressions(long impressions) {
+        this.impressions = impressions;
+    }
+
+    public long getLikes() {
+        return likes;
+    }
+
+    public void setLikes(long likes) {
+        this.likes = likes;
+    }
+
 
     @JsonIgnore
     public boolean isValid() {
