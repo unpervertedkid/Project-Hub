@@ -33,4 +33,15 @@ public class ProjectController {
     public ResponseEntity<Project> getProject(@PathVariable long id) throws ProjectNotFoundException {
         return ResponseEntity.ok(projectService.getProject(id));
     }
+
+    @GetMapping("/category/{category}/")
+    public ResponseEntity<?> getProjectByCategory(@PathVariable String category) throws ProjectNotFoundException {
+        return ResponseEntity.ok(projectService.getProjectByCategory(category));
+    }
+
+    //Get projects sorted by impressions
+    @GetMapping("/impressions")
+    public ResponseEntity<?> getProjectsByImpressions() {
+        return ResponseEntity.ok(projectService.getProjectsByImpressions());
+    }
 }
