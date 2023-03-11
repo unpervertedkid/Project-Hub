@@ -34,7 +34,7 @@ public class ProjectService {
     }
 
     public List<Project> getProjectByCategory(String category) throws ProjectNotFoundException {
-        List<Project> projectList = projectRepository.findByCategory(category);
+        List<Project> projectList = projectRepository.findByCategory(category, Pageable.ofSize(10));
         if (projectList.isEmpty()) {
             throw new ProjectNotFoundException("Project not found");
         }
@@ -43,5 +43,17 @@ public class ProjectService {
 
     public List<Project> getProjectsByImpressions() {
         return projectRepository.findAllByOrderByImpressionsDesc(Pageable.ofSize(10));
+    }
+
+    public List<Project> getProjectByCategorySortedByImpression(String category) {
+        return projectRepository.findByCategoryOrderByImpressionsDesc(category, Pageable.ofSize(10));
+    }
+
+    public List<Project> getProjectByCategorySortedByLikes(String category) {
+        return projectRepository.findByCategoryOrderByLikesDesc(category, Pageable.ofSize(10));
+    }
+
+    public List<Project> getProjectsByLikes() {
+        return projectRepository.findAllByOrderByLikesDesc(Pageable.ofSize(10));
     }
 }

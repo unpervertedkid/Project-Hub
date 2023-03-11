@@ -11,7 +11,13 @@ import java.util.Optional;
 @Repository
 public interface ProjectRepository extends JpaRepository<Project, Long> {
 
-    List<Project> findByCategory(String category);
+    List<Project> findByCategory(String category, Pageable pageable);
 
     List<Project> findAllByOrderByImpressionsDesc(Pageable pageable);
+
+    List<Project> findByCategoryOrderByImpressionsDesc(String category, Pageable pageable);
+
+    List<Project> findByCategoryOrderByLikesDesc(String category, Pageable pageable);
+
+    List<Project> findAllByOrderByLikesDesc(Pageable ofSize);
 }

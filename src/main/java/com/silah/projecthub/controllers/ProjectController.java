@@ -39,9 +39,25 @@ public class ProjectController {
         return ResponseEntity.ok(projectService.getProjectByCategory(category));
     }
 
-    //Get projects sorted by impressions
+    @GetMapping("/category/{category}/impressions")
+    public ResponseEntity<?> getProjectByCategoryByImpressions(@PathVariable String category) throws ProjectNotFoundException {
+        return ResponseEntity.ok(projectService.getProjectByCategorySortedByImpression(category));
+    }
+
+
+    @GetMapping("/category/{category}/likes")
+    public ResponseEntity<?> getProjectByCategoryByLikes(@PathVariable String category) throws ProjectNotFoundException {
+        return ResponseEntity.ok(projectService.getProjectByCategorySortedByLikes(category));
+    }
+
     @GetMapping("/impressions")
     public ResponseEntity<?> getProjectsByImpressions() {
         return ResponseEntity.ok(projectService.getProjectsByImpressions());
     }
+
+    @GetMapping("/likes")
+    public ResponseEntity<?> getProjectsByLikes() {
+        return ResponseEntity.ok(projectService.getProjectsByLikes());
+    }
+
 }
